@@ -162,3 +162,9 @@ def upload():
 
 if(__name__ == '__main__'):
 	app.run()
+
+# TODO:
+# hide registration link unless already logged in
+# delete all users except one admin login
+# delete all audit entries and audits, fresh start
+# hide all pages except home page and login page unless in session

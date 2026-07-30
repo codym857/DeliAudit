@@ -7,10 +7,10 @@
 		<div class="d-flex justify-content-center">
 			<a class="px-5" href="../login">Login</a>
 		</div>
+		{% if inSession %}
 		<div class="d-flex justify-content-center">
 			<a class="py-3" href="../register">Register New User</a>
 		</div>
-		{% if inSession %}
 		<div class="d-flex justify-content-center">
 			<a class="px-5" href="../logout">Logout</a>
 		</div>
