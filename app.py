@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, session
+from flask import Flask, render_template, request, redirect, url_for, session, flash
 import entry
 import item
 import audit
@@ -131,6 +131,31 @@ def login():
 def logout():
     session.clear()
     return redirect(url_for('home'))
+
+@app.route('/upload', methods=['GET', 'POST'])
+def upload():
+	if request.method == "POST":
+		if "file" not in request.files:
+			flash("No file part found.")
+			return redirect(url_for('itemEntry'))
+
+		file = request.files["file"]
+
+		if file.filename == "":
+			flash("No file selected.")
+			return redirect(url_for('itemEntry'))
+
+		if file and (file.filename.endswith(".xlsx") or file.filename.endswith(".xls")):
+			try:
+				database.import_items_database(file.stream)
+				flash(f"Successfully uploaded and imported data from {file.filename}")
+				return redirect(url_for('itemEntry'))
+			except Exception as e:
+				flash(f"An error occurred while processing data: {str(e)}")
+				return redirect(url_for('itemEntry'))
+		else:
+			flash("Invalid file format. Please upload an Excel (.xlsx or .xls) file.")
+			return redirect(url_for('itemEntry'))
 
 # if(__name__ == '__main__'):
 # 	app.run(host='0.0.0.0', port=5000, debug=True)
