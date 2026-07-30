@@ -15,11 +15,12 @@ app = Flask(__name__)
 bcrypt = Bcrypt(app)
 app.secret_key = '192b9bdd22ab9ed4d12e236c78afcb9a393ec15f71bbf5dc987d54727823bcbf'
 
-database.create_tables()
+
 
 @app.route('/home', methods=["POST", "GET"])
 @app.route('/', methods=["POST", "GET"])
 def home():
+	database.create_tables()
 	inSession = False
 
 	if session:
@@ -164,7 +165,7 @@ if(__name__ == '__main__'):
 	app.run()
 
 # TODO:
-# hide registration link unless already logged in
 # delete all users except one admin login
 # delete all audit entries and audits, fresh start
 # hide all pages except home page and login page unless in session
+# more legitimate items table
