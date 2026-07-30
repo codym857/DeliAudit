@@ -1,8 +1,22 @@
 {% extends "layout.html" %}
 {% block content %}
-	<div class="d-flex justify-content-center">
-		<h1 class="py-4">Deli Audit</h1>
+	<div class="container">
+		<div class="d-flex justify-content-center">
+			<h1>Deli Audit</h1>
+		</div>
+		<div class="d-flex justify-content-center">
+			<a class="px-5" href="../login">Login</a>
+		</div>
+		<div class="d-flex justify-content-center">
+			<a class="py-3" href="../register">Register New User</a>
+		</div>
+		{% if inSession %}
+		<div class="d-flex justify-content-center">
+			<a class="px-5" href="../logout">Logout</a>
+		</div>
+		{% endif %}
 	</div>
+	{% if inSession %}
 	<div class="container">
 		<h2>New Audit</h2>
 		<form action="#" method="post">
@@ -22,4 +36,5 @@
 	<div class="container pt-3">
 		<a href="../itemEntry">Manage Item Master List</a>
 	</div>
+	{% endif %}
 {% endblock %}
