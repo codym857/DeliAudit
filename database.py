@@ -1,4 +1,5 @@
 import sqlite3
+import pandas as pd
 
 def create_tables():
 	with sqlite3.connect('deliAudit.db', isolation_level=None) as conn:
@@ -14,5 +15,12 @@ def create_tables():
 																  extendedCost REAL NOT NULL, FOREIGN KEY (auditID) REFERENCES audits(auditID)) STRICT""")
 		cursor.execute("""CREATE TABLE IF NOT EXISTS users (userID INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT NOT NULL, 
 															userEmail TEXT NOT NULL, hashed_pw TEXT NOT NULL) STRICT""")
+		conn.commit()
+	conn.close()
+
+def import_items_database(file):
+	df = pd.read_excel(file)
+	with sqlite3.connect('deliAudit.db', isolation_level=None) as conn:
+		df.to_sql("items", conn, if_exists="replace", index=False)
 		conn.commit()
 	conn.close()
