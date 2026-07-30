@@ -37,6 +37,8 @@ def home():
 
 @app.route('/audits/<auditID>')
 def audits(auditID):
+	if not session:
+		return redirect(url_for('home'))
 	if session:
 		currentAudit = audit.read_audit_from_auditID(auditID)
 		storeID = currentAudit[1]
@@ -47,7 +49,8 @@ def audits(auditID):
 
 @app.route('/entries/<auditID>', methods=["POST", "GET"])
 def entries(auditID):
-	
+	if not session:
+		return redirect(url_for('home'))
 	results = ('', '', '', '', '')
 	currentAudit = audit.read_audit_from_auditID(auditID)
 	storeID = currentAudit[1]
@@ -64,6 +67,8 @@ def entries(auditID):
 
 @app.route('/record', methods=["POST", "GET"])
 def record():
+	if not session:
+		return redirect(url_for('home'))
 	if request.method == "POST":
 		itemID = request.form["itemID"]
 		quantity = request.form["quantity"]
@@ -77,6 +82,8 @@ def record():
 
 @app.route('/finalize', methods=["POST", "GET"])
 def finalize():
+	if not session:
+		return redirect(url_for('home'))
 	if request.method == "POST":
 		auditID = request.form["auditID"]
 
@@ -84,6 +91,8 @@ def finalize():
 
 @app.route('/searchAudits', methods=["POST", "GET"])
 def searchAudits():
+	if not session:
+		return redirect(url_for('home'))
 	if request.method == "POST":
 		storeNumber = request.form["storeNumber"]
 		searchAudits = audit.read_audit_from_store(storeNumber)
@@ -91,6 +100,8 @@ def searchAudits():
 
 @app.route('/itemEntry', methods=["POST", "GET"])
 def itemEntry():
+	if not session:
+		return redirect(url_for('home'))
 	if request.method == "POST":
 		description = request.form["description"]
 		category = request.form["category"]
@@ -104,6 +115,8 @@ def itemEntry():
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
+	if not session:
+		return redirect(url_for('home'))
 	if request.method == "POST":
 		username = request.form["username"]
 		userEmail = request.form["userEmail"]
@@ -135,6 +148,8 @@ def logout():
 
 @app.route('/upload', methods=['GET', 'POST'])
 def upload():
+	if not session:
+		return redirect(url_for('home'))
 	if request.method == "POST":
 		if "file" not in request.files:
 			flash("No file part found.")
@@ -163,9 +178,3 @@ def upload():
 
 if(__name__ == '__main__'):
 	app.run()
-
-# TODO:
-# delete all users except one admin login
-# delete all audit entries and audits, fresh start
-# hide all pages except home page and login page unless in session
-# more legitimate items table
