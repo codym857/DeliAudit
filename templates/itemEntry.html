@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+{% block content %}
+
+	<a href="../home">Go Home</a>
+	<div class="d-flex justify-content-center">
+		<h2 class="py-4">Add Items</h2>
+	</div>
+	<div class="container">
+		<form action="#" method="post">
+			<p>Description</p>
+			<input type="text" name="description" />
+			<p>Category</p>
+			<select id="categories" name="category">
+	  			<option value="29">Deli</option>
+	  			<option value="30">Hot Dispense</option>
+	 			<option value="31">Cold Dispense</option>
+	  			<option value="32">Frozen Dispense</option>
+	  			<option value="35">Baskin Robbins</option>
+	  			<option value="45">Ice</option>
+	  			<option value="48">Restaurant</option>
+			</select>
+			<p class="pt-3">Unit Cost</p>
+			<input type="number" step="0.01" inputmode="decimal" name="unitCost" />
+			<p class="pt-3">Unit Type</p>
+			<input type="text" name="unitType" />
+			<p class="pt-3"><input type="submit" value="Submit" /></p>
+		</form>
+	</div>
+
+{% endblock %}

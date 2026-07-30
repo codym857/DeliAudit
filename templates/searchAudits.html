@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+{% block content %}
+	<a href="../home">Go Home</a>
+	<div class="d-flex justify-content-center">
+		<h2 class="py-4">Store {{storeID}} Audits</h2>
+	</div>
+	<div class="container">
+		<table class="table table-striped">
+			<tr>
+				<th>Audit ID</th>
+				<th>Audit Date</th>
+			</tr>
+			{% for audit in searchAudits %}
+				<tr>
+					<td><a href='./audits/{{audit[0]}}'>{{audit[0]}}</a></td>
+					<td>{{audit[2]}}</td>
+				</tr>
+			{% endfor %}
+		</table>
+	</div>
+{% endblock %}

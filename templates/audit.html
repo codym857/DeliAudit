@@ -1,0 +1,59 @@
+{% extends "layout.html" %}
+{% block content %}
+	<style>
+	  table th {
+	  	text-align: left;
+	  	vertical-align: middle;
+	  }
+	  table td {
+	    text-align: right;     /* Horizontal centering */
+	    vertical-align: middle;   /* Vertical centering */
+	  }
+	</style>	
+
+	<a href="../home">Go Home</a>
+	<div class="d-flex justify-content-center">
+		<h2 class="pt-4">Audit {{auditID}} Overview</h2>
+	</div>
+	<div class="d-flex justify-content-center">
+		<h4>Store {{storeID}}</h4>
+	</div>
+	<div class="d-flex justify-content-center">
+		<h4 class="pb-4">{{auditDate}}</h4>
+	</div>
+	<div class="container-sm">
+		<table class="table table-striped">
+			<tr>
+				<th>Deli (29)</th>
+				<td>{{categorySums[29]}}</td>
+			</tr>
+			<tr>
+				<th>Hot Dispense (30)</th>
+				<td>{{categorySums[30]}}</td>
+			</tr>
+			<tr>
+				<th>Cold Dispense (31)</th>
+				<td>{{categorySums[31]}}</td>
+			</tr>
+			<tr>
+				<th>Frozen Dispense (32)</th>
+				<td>{{categorySums[32]}}</td>
+			</tr>
+			<tr>
+				<th>Baskin Robbins (35)</th>
+				<td>{{categorySums[35]}}</td>
+			</tr>
+			<tr>
+				<th>Ice (45)</th>
+				<td>{{categorySums[45]}}</td>
+			</tr>
+			<tr>
+				<th>Restaurant (48)</th>
+				<td>{{categorySums[48]}}</td>
+			</tr>
+		</table>
+
+		<a href="../entries/{{auditID}}">Return to Entries</a>
+	</div>
+
+{% endblock %}

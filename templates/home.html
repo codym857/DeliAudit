@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+{% block content %}
+	<div class="d-flex justify-content-center">
+		<h1 class="py-4">Deli Audit</h1>
+	</div>
+	<div class="container">
+		<h2>New Audit</h2>
+		<form action="#" method="post">
+			<p>Store Number:</p>
+			<p><input type="text" inputmode="numeric" name="storeNumber" /></p>
+			<p><input type="submit" value="Create" /></p>
+		</form>
+	</div>
+	<div class="container">
+		<h2 class="pt-4">Search Audits by Store</h2>
+		<form action="/searchAudits" method="post">
+			<p>Store Number:</p>
+			<p><input type="text" inputmode="numeric" name="storeNumber" /></p>
+			<p><input type="submit" value="Search" /></p>
+		</form>
+	</div>
+	<div class="container pt-3">
+		<a href="../itemEntry">Manage Item Master List</a>
+	</div>
+{% endblock %}
