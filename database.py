@@ -5,7 +5,7 @@ def create_tables():
 	with sqlite3.connect('deliAudit.db', isolation_level=None) as conn:
 		cursor = conn.cursor()
 		cursor.execute
-		cursor.execute("""CREATE TABLE IF NOT EXISTS items (itemID INTEGER PRIMARY KEY AUTOINCREMENT, description TEXT NOT NULL,
+		cursor.execute("""CREATE TABLE IF NOT EXISTS items (itemID INTEGER PRIMARY KEY, description TEXT NOT NULL,
 															category INTEGER NOT NULL, unitCost REAL NOT NULL,
 															unitType TEXT NOT NULL) STRICT""")
 		cursor.execute("""CREATE TABLE IF NOT EXISTS audits (auditID INTEGER PRIMARY KEY AUTOINCREMENT, storeID INTEGER NOT NULL, 

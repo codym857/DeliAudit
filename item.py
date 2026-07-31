@@ -12,7 +12,7 @@ class Item:
 	def create_item(self):
 		with sqlite3.connect('deliAudit.db', isolation_level=None) as conn:
 			cursor = conn.cursor()
-			cursor.execute('INSERT INTO items VALUES (NULL, ?, ?, ?, ?)', (self.description, self.category, self.unitCost, self.unitType))
+			cursor.execute('INSERT INTO items (itemID, description, category, unitCost, unitType) VALUES (?, ?, ?, ?, ?)', (None, self.description, self.category, self.unitCost, self.unitType))
 			conn.commit()
 		conn.close()
 
